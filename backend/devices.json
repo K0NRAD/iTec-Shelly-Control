@@ -1,0 +1,85 @@
+{
+  "tabs": [
+    {
+      "id": "rack1",
+      "name": "Rack 1",
+      "order": 1
+    },
+    {
+      "id": "rack2",
+      "name": "Rack 2",
+      "order": 2
+    },
+    {
+      "id": "Rack 3",
+      "name": "Rack 3",
+      "order": 99
+    }
+  ],
+  "devices": [
+    {
+      "id": "s1r1",
+      "name": "S1R1",
+      "ip": "192.168.1.50",
+      "generation": 1,
+      "tab_id": "Rack 3",
+      "description": "Dell PowerEdge R640"
+    },
+    {
+      "id": "s2r1",
+      "name": "S2R1",
+      "ip": "192.168.1.51",
+      "generation": 1,
+      "tab_id": "Rack 3",
+      "description": "HPE ProLiant DL360"
+    },
+    {
+      "id": "s3r1",
+      "name": "S3R1",
+      "ip": "192.168.1.52",
+      "generation": 3,
+      "tab_id": "Rack 3",
+      "description": "Cisco Switch C2960"
+    },
+    {
+      "id": "s5r1",
+      "name": "S5R1",
+      "ip": "192.168.1.54",
+      "generation": 3,
+      "tab_id": "rack2",
+      "description": "NAS Synology DS923+"
+    },
+    {
+      "id": "s1r2",
+      "name": "S1R2",
+      "ip": "192.168.1.60",
+      "generation": 1,
+      "tab_id": "rack1",
+      "description": "Dell PowerEdge R740"
+    },
+    {
+      "id": "s2r2",
+      "name": "S2R2",
+      "ip": "192.168.1.61",
+      "generation": 3,
+      "tab_id": "rack1",
+      "description": "HP UPS R1500"
+    },
+    {
+      "id": "s01",
+      "name": "S01",
+      "ip": "192.168.1.70",
+      "generation": 1,
+      "tab_id": "Rack 3",
+      "description": "Testgerät Laptop"
+    },
+    {
+      "id": "s02",
+      "name": "S02",
+      "ip": "192.168.1.71",
+      "generation": 3,
+      "tab_id": "rack2",
+      "description": "Kamera Konferenzraum"
+    }
+  ]
+}

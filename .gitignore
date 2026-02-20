@@ -1,0 +1,28 @@
+# ========================
+# Frontend (Svelte + Vite)
+# ========================
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/.svelte-kit/
+
+# ========================
+# Backend (Go)
+# ========================
+backend/shelly-control
+backend/*.exe
+backend/*.test
+backend/vendor/
+
+# Config mit sensiblen Daten
+# backend/config.json
+# backend/devices.json
+
+# ========================
+# Allgemein
+# ========================
+.DS_Store
+*.log
+*.env
+.env.*
+SKILL.md
