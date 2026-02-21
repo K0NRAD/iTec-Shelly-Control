@@ -1,0 +1,61 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: Build frontend
+        working-directory: frontend
+        run: npm run build
+
+      - name: Copy frontend dist to backend
+        run: |
+          rm -rf backend/static/*
+          cp -r frontend/dist/* backend/static/
+
+      - name: Build Windows (amd64)
+        working-directory: backend
+        run: CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o shelly-control-windows-amd64.exe .
+
+      - name: Build macOS (amd64)
+        working-directory: backend
+        run: CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o shelly-control-macos-amd64 .
+
+      - name: Build macOS (arm64)
+        working-directory: backend
+        run: CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 go build -o shelly-control-macos-arm64 .
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            backend/shelly-control-windows-amd64.exe
+            backend/shelly-control-macos-amd64
+            backend/shelly-control-macos-arm64
+            backend/config.json
