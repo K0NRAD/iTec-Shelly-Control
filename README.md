@@ -1,17 +1,17 @@
 # Shelly Control
 
-Web-basierte Oberfläche zur zentralen Verwaltung und Steuerung von Shelly Smart Plugs im lokalen Netzwerk. Unterstützt Shelly Gen 1 und Gen 3 Geräte.
+Web-basierte Oberfläche zur zentralen Verwaltung und Steuerung von Shelly Smart Plugs im lokalen Netzwerk. Unterstützt Shelly Gen 1, Gen 3 und Gen 4 Geräte.
 
 ## Features
 
 - **Geräteübersicht** – Alle Shelly Plugs auf einen Blick mit aktuellem Status (ein/aus, Erreichbarkeit)
 - **Schalten** – Geräte direkt aus der Web-UI ein- und ausschalten
-- **Leistungsanzeige** – Aktuelle Stromaufnahme (Watt) mit Live-Sparkline je Gerät
+- **Leistungsanzeige** – Aktuelle Stromaufnahme (Watt) mit Live-Sparkline je Gerät 
 - **Tabs** – Geräte in Gruppen (z. B. Racks) organisieren
 - **Polling** – Konfigurierbares Intervall für automatische Statusabfragen
 - **Import / Export** – Gerätekonfiguration als JSON sichern und wiederherstellen
 - **Geräteverwaltung** – Geräte und Tabs direkt in der UI anlegen, bearbeiten und löschen
-- **Gen 1 & Gen 3** – Unterstützung für beide Shelly-Generationen
+- **Gen 1 & Gen 3 & Gen 4** – Unterstützung für die Shelly-Generationen
 
 ## Tech Stack
 
