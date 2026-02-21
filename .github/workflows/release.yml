@@ -47,11 +47,15 @@ jobs:
 
       - name: Build macOS (amd64)
         working-directory: backend
-        run: CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o shelly-control-macos-amd64 .
+        run: |
+          CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o shelly-control-macos-amd64 .
+          codesign --sign - --force --preserve-metadata=entitlements,requirements,flags,runtime shelly-control-macos-amd64 || true
 
       - name: Build macOS (arm64)
         working-directory: backend
-        run: CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 go build -o shelly-control-macos-arm64 .
+        run: |
+          CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 go build -o shelly-control-macos-arm64 .
+          codesign --sign - --force --preserve-metadata=entitlements,requirements,flags,runtime shelly-control-macos-arm64 || true
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
