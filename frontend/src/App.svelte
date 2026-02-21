@@ -11,7 +11,7 @@
   import { deviceStore } from './stores/devices.svelte.js'
 
   let activeTabId = $state('')
-  let historyMinutes = $state(10)
+  let historyMinutes = $state(5)
 
   // Modal state
   let modal = $state(null) // { type: 'device'|'tab'|'import'|'export'|'confirm', data: ... }
@@ -113,7 +113,12 @@
   />
 {/if}
 
+<footer class="app-footer">
+  <span><strong>iTec</strong> - learn together grow together</span>
+</footer>
+
 <!-- Modals -->
+
 {#if modal?.type === 'device'}
   <DeviceModal
     device={modal.data}
@@ -152,3 +157,13 @@
     oncancel={() => { modal = null }}
   />
 {/if}
+
+<style>
+  .app-footer {
+    text-align: right;
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--card-border);
+  }
+</style>

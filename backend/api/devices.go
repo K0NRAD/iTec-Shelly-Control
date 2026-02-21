@@ -60,8 +60,8 @@ func (h *Handler) createDevice(w http.ResponseWriter, r *http.Request) {
 		writeError(w, http.StatusBadRequest, "id, name und ip sind Pflichtfelder")
 		return
 	}
-	if d.Generation != 1 && d.Generation != 3 {
-		writeError(w, http.StatusBadRequest, "generation muss 1 oder 3 sein")
+	if d.Generation != 1 && d.Generation != 3 && d.Generation != 4 {
+		writeError(w, http.StatusBadRequest, "generation muss 1, 3 oder 4 sein")
 		return
 	}
 	if err := h.devices.AddDevice(d); err != nil {

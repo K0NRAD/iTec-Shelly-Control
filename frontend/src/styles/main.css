@@ -5,19 +5,19 @@
 @layer base {
   :root {
     color-scheme: light dark;
-    --card-bg:        light-dark(#ffffff, #1e2030);
-    --card-border:    light-dark(#dbdbdb, #2a2f3a);
-    --text-primary:   light-dark(#222222, #e0e0e0);
-    --text-secondary: light-dark(#666666, #aaaaaa);
-    --bg-page:        light-dark(#f5f5f5, #13141f);
-    --header-bg:      light-dark(#ffffff, #1a1b2e);
-    --header-border:  light-dark(#dbdbdb, #2a2f3a);
-    --toggle-on:      #48c774;
-    --toggle-off:     light-dark(#dbdbdb, #4a4f5a);
-    --sparkline-bar:  light-dark(#3273dc, #6ba3ff);
-    --drag-over-bg:    light-dark(#ebf5fb, #1a2a3a);
-    --tab-inactive-bg: light-dark(#e8e8e8, #0e0f1a);
-    --tab-hover-bg:    light-dark(#efefef, #151622);
+    --card-bg:           light-dark(#e0e0e0, #2e3150);
+    --card-border:       light-dark(#dbdbdb, #2a2f3a);
+    --text-primary:      light-dark(#222222, #e0e0e0);
+    --text-secondary:    light-dark(#666666, #aaaaaa);
+    --bg-page:           light-dark(#f5f5f5, #13141f);
+    --header-bg:         light-dark(#ffffff, #1a1b2e);
+    --header-border:     light-dark(#dbdbdb, #2a2f3a);
+    --toggle-on:         #48c774;
+    --toggle-off:        light-dark(#b8b8b8, #5a6070);
+    --sparkline-bar:     light-dark(#3273dc, #6ba3ff);
+    --drag-over-bg:      light-dark(#ebf5fb, #1a2a3a);
+    --tab-inactive-bg:   light-dark(#e8e8e8, #0e0f1a);
+    --tab-hover-bg:      light-dark(#efefef, #151622);
     --tab-active-bg:     light-dark(#2563eb, #93c5fd);
     --tab-active-color:  light-dark(#ffffff, #0f172a);
     --tab-active-border: light-dark(#1d4ed8, #60a5fa);
@@ -48,370 +48,47 @@
 }
 
 @layer components {
-  /* ── Header ─────────────────────────────────────────────── */
-  .app-header {
-    height: 56px;
-    background: var(--header-bg);
-    border-bottom: 1px solid var(--header-border);
-    display: flex;
+  /* ── Buttons (geteilt: Header + alle Modals) ─────────────── */
+  .btn {
+    display: inline-flex;
     align-items: center;
-    padding: 0 1rem;
-    gap: 0.75rem;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-
-  .app-header .logo {
-    font-weight: 700;
-    font-size: 1.1rem;
-    letter-spacing: 0.05em;
-    color: var(--text-primary);
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    margin-right: auto;
-  }
-
-  .app-header .logo svg {
-    color: #df376a;
-  }
-
-  /* ── Dark Mode Toggle ──────────────────────────────────── */
-  .theme-toggle {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    user-select: none;
-  }
-
-  .theme-toggle input[type="checkbox"] {
-    display: none;
-  }
-
-  .theme-toggle .track {
-    width: 56px;
-    height: 26px;
-    background: var(--toggle-off);
-    border-radius: 13px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    transition: background 0.25s;
-  }
-
-  .theme-toggle input:checked + .track {
-    background: #2c3e6b;
-  }
-
-  .theme-toggle .thumb {
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: white;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-    transition: transform 0.25s;
-    z-index: 1;
-  }
-
-  .theme-toggle input:checked + .track .thumb {
-    transform: translateX(30px);
-  }
-
-  .theme-toggle .track-icon {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-    font-size: 11px;
-    transition: opacity 0.25s;
-    pointer-events: none;
-  }
-
-  .theme-toggle .track-icon--left  { left: 3px; }
-  .theme-toggle .track-icon--right { right: 3px; }
-
-  /* Light Mode aktiv (unchecked): Sonne blau, Mond gedimmt */
-  .theme-toggle input:not(:checked) + .track .track-icon--left  { color: #3273dc; opacity: 1;   }
-  .theme-toggle input:not(:checked) + .track .track-icon--right { color: #fff;    opacity: 0.25; }
-
-  /* Dark Mode aktiv (checked): Mond blau, Sonne gedimmt */
-  .theme-toggle input:checked + .track .track-icon--left  { color: #fff;    opacity: 0.25; }
-  .theme-toggle input:checked + .track .track-icon--right { color: #3273dc; opacity: 1;   }
-
-  /* ── TabBar ─────────────────────────────────────────────── */
-  .tab-bar {
-    background: var(--header-bg);
-    border-bottom: 1px solid var(--header-border);
-    padding: 0 1rem;
-    display: flex;
-    align-items: flex-end;
-    gap: 0;
-    overflow-x: auto;
-  }
-
-  .tab-bar .tab-item {
-    padding: 0.55rem 1.1rem;
+    gap: 0.3rem;
+    padding: 0.45rem 0.9rem;
+    border-radius: 4px;
     border: 1px solid transparent;
-    border-radius: 6px 6px 0 0;
     cursor: pointer;
-    white-space: nowrap;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.4;
+    transition: opacity 0.15s;
+  }
+
+  .btn:hover    { opacity: 0.85; }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .btn-primary   { background: #3273dc; color: white; }
+  .btn-secondary { background: var(--card-bg); border-color: var(--card-border); color: var(--text-primary); }
+  .btn-danger    { background: #f14668; color: white; }
+
+  .btn-ghost {
+    background: transparent;
+    border-color: var(--card-border);
     color: var(--text-secondary);
-    background: var(--tab-inactive-bg);
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.9rem;
-    margin-right: 3px;
-    margin-bottom: -1px;
-    transition: background 0.15s, color 0.15s;
   }
 
-  .tab-bar .tab-item:hover {
+  .btn-ghost:hover {
     color: var(--text-primary);
-    background: var(--tab-hover-bg);
-  }
-
-  .tab-bar .tab-item.active {
-    color: var(--tab-active-color);
-    font-weight: 600;
-    background: var(--tab-active-bg);
-    border-color: var(--tab-active-border);
-    border-bottom-color: var(--tab-active-bg);
-  }
-
-  .tab-bar .tab-item .tab-actions {
-    display: flex;
-    gap: 0.2rem;
-    margin-left: 0.3rem;
-  }
-
-  .tab-bar .tab-item .tab-actions button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.1rem 0.2rem;
-    color: inherit;
-    font-size: 0.75rem;
-    line-height: 1;
-    opacity: 0.6;
-  }
-
-  .tab-bar .tab-item .tab-actions button:hover {
+    border-color: var(--text-secondary);
     opacity: 1;
   }
 
-  .tab-bar .tab-item.drag-over-tab {
-    color: #ffffff;
-    background: #3273dc;
-    border-color: #2366d1;
-    border-bottom-color: #3273dc;
-    font-weight: 600;
-  }
-
-  .tab-bar .add-tab-btn {
-    padding: 0.6rem 0.75rem;
-    color: var(--text-secondary);
-    cursor: pointer;
-    font-size: 1.1rem;
-    background: none;
-    border: none;
-    line-height: 1;
-  }
-
-  .tab-bar .add-tab-btn:hover {
+  .btn-edit-active {
+    background: #3273dc22;
+    border-color: #3273dc;
     color: #3273dc;
   }
 
-  /* ── Device Grid ─────────────────────────────────────────── */
-  .device-grid-container {
-    padding: 1rem;
-    flex: 1;
-  }
-
-  .device-grid {
-    container-type: inline-size;
-    container-name: cards-grid;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 0.75rem;
-  }
-
-  @container cards-grid (max-width: 1400px) {
-    .device-grid { grid-template-columns: repeat(5, 1fr); }
-  }
-  @container cards-grid (max-width: 1100px) {
-    .device-grid { grid-template-columns: repeat(4, 1fr); }
-  }
-  @container cards-grid (max-width: 800px) {
-    .device-grid { grid-template-columns: repeat(3, 1fr); }
-  }
-  @container cards-grid (max-width: 550px) {
-    .device-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  /* ── Device Card ─────────────────────────────────────────── */
-  .device-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 6px;
-    padding: 0.75rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    position: relative;
-    transition: border-color 0.15s;
-  }
-
-  .device-card:hover {
-    border-color: #3273dc44;
-  }
-
-  .device-card.drag-over {
-    background: var(--drag-over-bg);
-    border-color: #3273dc;
-  }
-
-  .device-card.offline {
-    opacity: 0.6;
-  }
-
-  .device-card.dragging {
-    opacity: 0.25;
-  }
-
-  .card-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-  }
-
-  .card-name {
-    font-weight: 600;
-    font-size: 0.9rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    flex: 1;
-  }
-
-  .card-description {
-    font-size: 0.78rem;
-    color: var(--text-secondary);
-    min-height: 1.1em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  .card-watt {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-primary);
-  }
-
-  .card-watt .unit {
-    font-size: 0.75rem;
-    font-weight: 400;
-    color: var(--text-secondary);
-    margin-left: 0.2rem;
-  }
-
-  /* ── Relay Toggle ────────────────────────────────────────── */
-  .relay-toggle {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    gap: 0.3rem;
-    flex-shrink: 0;
-  }
-
-  .relay-toggle input[type="checkbox"] { display: none; }
-
-  .relay-toggle .track {
-    width: 40px;
-    height: 22px;
-    background: var(--toggle-off);
-    border-radius: 11px;
-    position: relative;
-    transition: background 0.2s;
-  }
-
-  .relay-toggle .track::after {
-    content: '';
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background: white;
-    transition: transform 0.2s;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-  }
-
-  .relay-toggle input:checked + .track {
-    background: var(--toggle-on);
-  }
-
-  .relay-toggle input:checked + .track::after {
-    transform: translateX(18px);
-  }
-
-  /* ── Sparkline ───────────────────────────────────────────── */
-  .sparkline-wrapper {
-    position: relative;
-    height: 32px;
-  }
-
-  .sparkline-label {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    font-size: 0.65rem;
-    color: var(--text-secondary);
-  }
-
-  /* ── Edit Mode Card Extras ───────────────────────────────── */
-  .card-action-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.2rem 0.3rem;
-    color: var(--text-secondary);
-    font-size: 0.8rem;
-    line-height: 1;
-    border-radius: 3px;
-    flex-shrink: 0;
-    transition: color 0.15s;
-  }
-
-  .card-action-btn:hover {
-    color: var(--text-primary);
-  }
-
-  .card-action-btn--danger:hover {
-    color: #f14668;
-  }
-
-  .drag-handle {
-    cursor: grab;
-    color: var(--text-secondary);
-    padding: 0 0.3rem 0 0;
-    font-size: 0.9rem;
-    align-self: center;
-    flex-shrink: 0;
-  }
-
-  .drag-handle:active { cursor: grabbing; }
-
-  /* ── Modals ──────────────────────────────────────────────── */
+  /* ── Modals (geteilt: alle Modal-Komponenten) ────────────── */
   .modal-backdrop {
     position: fixed;
     inset: 0;
@@ -435,9 +112,7 @@
     gap: 1rem;
   }
 
-  .modal-box.modal-wide {
-    width: min(720px, 95vw);
-  }
+  .modal-box.modal-wide { width: min(720px, 95vw); }
 
   .modal-title {
     font-size: 1.1rem;
@@ -452,7 +127,7 @@
     margin-top: 0.5rem;
   }
 
-  /* ── Form Elements ───────────────────────────────────────── */
+  /* ── Form Fields (geteilt: alle Modal-Komponenten) ───────── */
   .field label {
     display: block;
     font-size: 0.85rem;
@@ -480,101 +155,7 @@
     border-color: #3273dc;
   }
 
-  /* ── Import Table ────────────────────────────────────────── */
-  .import-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.8rem;
-  }
-
-  .import-table th,
-  .import-table td {
-    padding: 0.35rem 0.5rem;
-    border-bottom: 1px solid var(--card-border);
-    text-align: left;
-  }
-
-  .import-table th {
-    color: var(--text-secondary);
-    font-weight: 500;
-  }
-
-  .status-new     { color: #48c774; }
-  .status-update  { color: #ffdd57; }
-  .status-unchanged { color: var(--text-secondary); }
-  .status-error   { color: #f14668; }
-
-  /* ── Dropzone ────────────────────────────────────────────── */
-  .dropzone {
-    border: 2px dashed var(--card-border);
-    border-radius: 6px;
-    padding: 2rem;
-    text-align: center;
-    color: var(--text-secondary);
-    cursor: pointer;
-    transition: border-color 0.15s, background 0.15s;
-  }
-
-  .dropzone.drag-active,
-  .dropzone:hover {
-    border-color: #3273dc;
-    background: var(--drag-over-bg);
-  }
-
-  /* ── Buttons ─────────────────────────────────────────────── */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    padding: 0.45rem 0.9rem;
-    border-radius: 4px;
-    border: 1px solid transparent;
-    cursor: pointer;
-    font-size: 0.875rem;
-    font-weight: 500;
-    line-height: 1.4;
-    transition: opacity 0.15s;
-  }
-
-  .btn:hover { opacity: 0.85; }
-  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
-
-  .btn-primary {
-    background: #3273dc;
-    color: white;
-  }
-
-  .btn-secondary {
-    background: var(--card-bg);
-    border-color: var(--card-border);
-    color: var(--text-primary);
-  }
-
-  .btn-danger {
-    background: #f14668;
-    color: white;
-  }
-
-  .btn-ghost {
-    background: transparent;
-    border-color: var(--card-border);
-    color: var(--text-secondary);
-  }
-
-  .btn-ghost:hover {
-    color: var(--text-primary);
-    border-color: var(--text-secondary);
-    opacity: 1;
-  }
-
-  /* ── Edit Mode Active State ──────────────────────────────── */
-  .btn-edit-active {
-    background: #3273dc22;
-    border-color: #3273dc;
-    color: #3273dc;
-  }
-
-  /* ── Utility ─────────────────────────────────────────────── */
+  /* ── Utilities (geteilt) ─────────────────────────────────── */
   .empty-state {
     text-align: center;
     padding: 3rem;

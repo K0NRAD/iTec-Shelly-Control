@@ -24,3 +24,31 @@
     </div>
   {/if}
 </div>
+
+<style>
+  .device-grid-container {
+    padding: 1rem;
+    flex: 1;
+  }
+
+  .device-grid {
+    container-type: inline-size;
+    container-name: cards-grid;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.75rem;
+  }
+
+  @container cards-grid (max-width: 1400px) {
+    .device-grid { grid-template-columns: repeat(5, 1fr); }
+  }
+  @container cards-grid (max-width: 1100px) {
+    .device-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  @container cards-grid (max-width: 800px) {
+    .device-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @container cards-grid (max-width: 550px) {
+    .device-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>

@@ -1,5 +1,5 @@
 {
   "port": 8080,
   "polling_interval_seconds": 5,
-  "power_history_minutes": 10
+  "power_history_minutes": 5
 }

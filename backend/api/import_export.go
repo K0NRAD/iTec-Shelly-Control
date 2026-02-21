@@ -152,9 +152,9 @@ func (h *Handler) handleImport(w http.ResponseWriter, r *http.Request) {
 		} else if item.IP == "" {
 			row.Status = "error"
 			row.Error = "ip fehlt"
-		} else if item.Generation != 1 && item.Generation != 3 {
+		} else if item.Generation != 1 && item.Generation != 3 && item.Generation != 4 {
 			row.Status = "error"
-			row.Error = "generation muss 1 oder 3 sein"
+			row.Error = "generation muss 1, 3 oder 4 sein"
 		} else if existing, exists := deviceByName[item.Name]; exists {
 			if existing.IP == item.IP && existing.Generation == item.Generation && existing.Description == item.Description {
 				row.Status = "unchanged"

@@ -1,7 +1,7 @@
 <script>
   let { history = [], historyMinutes = 10 } = $props()
 
-  const WIDTH = 200
+  const WIDTH = 119
   const HEIGHT = 32
   const BAR_GAP = 1
 
@@ -45,3 +45,16 @@
   </svg>
   <span class="sparkline-label">← {historyMinutes} min</span>
 </div>
+
+<style>
+  .sparkline-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sparkline-label {
+    text-align: right;
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+  }
+</style>

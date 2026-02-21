@@ -176,3 +176,44 @@
     </div>
   </div>
 </div>
+
+<style>
+  .dropzone {
+    border: 2px dashed var(--card-border);
+    border-radius: 6px;
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+  }
+
+  .dropzone.drag-active,
+  .dropzone:hover {
+    border-color: #3273dc;
+    background: var(--drag-over-bg);
+  }
+
+  .import-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+  }
+
+  .import-table th,
+  .import-table td {
+    padding: 0.35rem 0.5rem;
+    border-bottom: 1px solid var(--card-border);
+    text-align: left;
+  }
+
+  .import-table th {
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .status-new       { color: #48c774; }
+  .status-update    { color: #ffdd57; }
+  .status-unchanged { color: var(--text-secondary); }
+  .status-error     { color: #f14668; }
+</style>

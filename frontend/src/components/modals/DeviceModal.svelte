@@ -90,6 +90,7 @@
       <select bind:value={form.generation}>
         <option value={1}>Gen 1 — Shelly Plug S</option>
         <option value={3}>Gen 3 — Shelly Plug S MTR</option>
+        <option value={4}>Gen 4 — Shelly 1PM Gen4</option>
       </select>
     </div>
 

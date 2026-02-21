@@ -27,6 +27,8 @@ func (c *Client) GetStatus(ip string, generation int) (Status, error) {
 		return getStatusGen1(c.http, ip)
 	case 3:
 		return getStatusGen3(c.http, ip)
+	case 4:
+		return getStatusGen4(c.http, ip)
 	default:
 		return Status{}, fmt.Errorf("unbekannte Generation: %d", generation)
 	}
@@ -38,6 +40,8 @@ func (c *Client) SetRelay(ip string, generation int, on bool) error {
 		return setRelayGen1(c.http, ip, on)
 	case 3:
 		return setRelayGen3(c.http, ip, on)
+	case 4:
+		return setRelayGen4(c.http, ip, on)
 	default:
 		return fmt.Errorf("unbekannte Generation: %d", generation)
 	}
