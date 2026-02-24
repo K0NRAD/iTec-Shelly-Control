@@ -1,19 +1,33 @@
 {
   "tabs": [
     {
-      "id": "rack-1",
-      "name": "Rack 1",
-      "order": 1
+      "id": "Rack2",
+      "name": "Rack 2",
+      "order": 99
+    },
+    {
+      "id": "r2",
+      "name": "Rack 3",
+      "order": 99
     }
   ],
   "devices": [
     {
       "id": "shelly-1pm-gen4",
       "name": "Shelly 1PM GEN4",
-      "ip": "192.168.178.136",
+      "ip": "192.168.8.195",
       "generation": 4,
-      "tab_id": "rack-1",
+      "tab_id": "r2",
       "description": "Dell PowerEdge R740"
+    },
+    {
+      "id": "shelly-1pm-gen3",
+      "name": "Shelly 1PM GEN3",
+      "ip": "192.168.8.198",
+      "generation": 3,
+      "tab_id": "r2",
+      "description": "NUK Power"
     }
   ]
 }
+

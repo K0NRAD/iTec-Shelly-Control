@@ -184,7 +184,7 @@ func (h *Handler) handleImport(w http.ResponseWriter, r *http.Request) {
 		}
 	default: // add / overwrite
 		for _, item := range items {
-			if item.Name == "" || item.IP == "" || (item.Generation != 1 && item.Generation != 3) {
+			if item.Name == "" || item.IP == "" || (item.Generation != 1 && item.Generation != 3  && item.Generation != 4) {
 				continue
 			}
 			// Tab sicherstellen

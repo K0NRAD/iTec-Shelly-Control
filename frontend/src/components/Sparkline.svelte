@@ -5,19 +5,20 @@
   const HEIGHT = 32
   const BAR_GAP = 1
 
+  const SLOTS = 60
+  const BAR_WIDTH = (WIDTH - (SLOTS - 1) * BAR_GAP) / SLOTS
+
   let bars = $derived.by(() => {
-    if (history.length === 0) return []
+    const recent = history.slice(-SLOTS)
+    const padded = [...Array(SLOTS - recent.length).fill({ watt: 0 }), ...recent]
+    const maxWatt = Math.max(...padded.map(s => s.watt), 1)
 
-    const maxWatt = Math.max(...history.map(s => s.watt), 1)
-    const count = Math.max(history.length, 1)
-    const barWidth = Math.max(1, (WIDTH - (count - 1) * BAR_GAP) / count)
-
-    return history.map((sample, i) => {
-      const barHeight = Math.max(2, (sample.watt / maxWatt) * (HEIGHT - 2))
+    return padded.map((sample, i) => {
+      const barHeight = sample.watt === 0 ? 1 : Math.max(2, (sample.watt / maxWatt) * (HEIGHT - 2))
       return {
-        x: i * (barWidth + BAR_GAP),
+        x: i * (BAR_WIDTH + BAR_GAP),
         y: HEIGHT - barHeight,
-        w: barWidth,
+        w: BAR_WIDTH,
         h: barHeight,
       }
     })
@@ -33,14 +34,16 @@
     aria-hidden="true"
   >
     {#each bars as bar}
-      <rect
-        x={bar.x}
-        y={bar.y}
-        width={bar.w}
-        height={bar.h}
-        fill="var(--sparkline-bar)"
-        rx="1"
-      />
+      {#if bar.h > 0}
+        <rect
+          x={bar.x}
+          y={bar.y}
+          width={bar.w}
+          height={bar.h}
+          fill="var(--sparkline-bar)"
+          rx="1"
+        />
+      {/if}
     {/each}
   </svg>
   <span class="sparkline-label">← {historyMinutes} min</span>
