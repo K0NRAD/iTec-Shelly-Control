@@ -3,7 +3,11 @@
 
   let { devices = [], historyMinutes = 10, activeTabId, onedit, ondelete } = $props()
 
-  let filtered = $derived(devices.filter(d => d.tab_id === activeTabId))
+  let filtered = $derived(
+    devices
+      .filter(d => d.tab_id === activeTabId)
+      .toSorted((a, b) => (a.order ?? 99) - (b.order ?? 99) || a.name.localeCompare(b.name))
+  )
 </script>
 
 <div class="device-grid-container">

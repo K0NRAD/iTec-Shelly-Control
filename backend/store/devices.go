@@ -21,6 +21,7 @@ type Device struct {
 	Generation  int    `json:"generation"`
 	TabID       string `json:"tab_id"`
 	Description string `json:"description"`
+	Order       int    `json:"order"`
 }
 
 type devicesFile struct {
@@ -130,7 +131,12 @@ func (s *DeviceStore) GetDevices() []Device {
 	defer s.mu.RUnlock()
 	result := make([]Device, len(s.devices))
 	copy(result, s.devices)
-	sort.Slice(result, func(i, j int) bool { return result[i].Name < result[j].Name })
+	sort.Slice(result, func(i, j int) bool {
+		if result[i].Order != result[j].Order {
+			return result[i].Order < result[j].Order
+		}
+		return result[i].Name < result[j].Name
+	})
 	return result
 }
 
@@ -189,6 +195,9 @@ func (s *DeviceStore) PatchDevice(id string, fields map[string]interface{}) erro
 			}
 			if gen, ok := fields["generation"].(float64); ok {
 				s.devices[i].Generation = int(gen)
+			}
+			if order, ok := fields["order"].(float64); ok {
+				s.devices[i].Order = int(order)
 			}
 			return s.save()
 		}

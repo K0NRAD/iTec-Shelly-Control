@@ -3,30 +3,45 @@
     {
       "id": "Rack1",
       "name": "Rack 1",
-      "order": 10
-    },
-    {
-      "id": "Rack2",
-      "name": "Rack 2",
-      "order": 20
+      "order": 99
     }
   ],
   "devices": [
     {
-      "id": "shelly-1pm-gen4",
-      "name": "Shelly 1PM GEN4",
-      "ip": "192.168.8.195",
-      "generation": 4,
-      "tab_id": "Rack2",
-      "description": "Dell PowerEdge R740"
+      "id": "S1",
+      "name": "Shelly Plug S Gen 1",
+      "ip": "192.168.8.100",
+      "generation": 1,
+      "tab_id": "Rack1",
+      "description": "Wetter Station",
+      "order": 1
     },
     {
-      "id": "shelly-1pm-gen3",
+      "id": "S2",
       "name": "Shelly 1PM GEN3",
       "ip": "192.168.8.198",
       "generation": 3,
-      "tab_id": "Rack2",
-      "description": "Computer Power"
+      "tab_id": "Rack1",
+      "description": "Computer Power",
+      "order": 2
+    },
+    {
+      "id": "S3",
+      "name": "Shelly Plug S Gen 3",
+      "ip": "192.168.8.200",
+      "generation": 3,
+      "tab_id": "Rack1",
+      "description": "Shelly Plug S Gen 3",
+      "order": 3
+    },
+    {
+      "id": "S4",
+      "name": "Shelly 1PM GEN4",
+      "ip": "192.168.8.195",
+      "generation": 4,
+      "tab_id": "Rack1",
+      "description": "Dell PowerEdge R740",
+      "order": 4
     }
   ]
 }

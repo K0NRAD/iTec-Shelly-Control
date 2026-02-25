@@ -12,6 +12,7 @@
     generation:  device?.generation ?? 1,
     tab_id:      device?.tab_id ?? activeTabId ?? (tabs[0]?.id ?? ''),
     description: device?.description ?? '',
+    order:       device?.order ?? 99,
   })
 
   let error = $state('')
@@ -32,9 +33,9 @@
     error = ''
     try {
       if (isEdit) {
-        await deviceStore.updateDevice(device.id, { ...form, generation: Number(form.generation) })
+        await deviceStore.updateDevice(device.id, { ...form, generation: Number(form.generation), order: Number(form.order) })
       } else {
-        await deviceStore.addDevice({ ...form, generation: Number(form.generation) })
+        await deviceStore.addDevice({ ...form, generation: Number(form.generation), order: Number(form.order) })
       }
       onclose?.()
     } catch (e) {
@@ -106,6 +107,11 @@
     <div class="field">
       <label>Beschreibung</label>
       <input type="text" bind:value={form.description} placeholder="z.B. Dell PowerEdge R640" />
+    </div>
+
+    <div class="field">
+      <label>Reihenfolge</label>
+      <input type="number" bind:value={form.order} min="0" placeholder="99" />
     </div>
 
     {#if error}
